@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="docs/images/hero-banner.svg" alt="SnapStudio - AI Product Image Generator" width="100%"/>
-</p>
+# SnapStudio - AI Product Image Generator
 
 <p align="center">
   <strong>Transform 1 product photo into 12 professional marketing images in 30 seconds.</strong><br/>
@@ -17,21 +15,28 @@
 
 ---
 
-## How It Works
+## Demo
 
-<p align="center">
-  <img src="docs/images/workflow.svg" alt="SnapStudio Workflow" width="100%"/>
-</p>
+> Upload 1 product photo → Get 12 professional marketing images across 4 styles: **Seeding**, **Social**, **Model**, **Display**
 
-Upload a product photo, choose your industry and styles, and SnapStudio's AI generates 12 professional marketing images across 4 categories - all in about 30 seconds.
+### Fashion - Shirt
+
+![Demo Fashion](docs/images/553323811_10163378911118750_3011025545344987494_n.jpg)
+
+### Fashion - Shoes
+
+![Demo Shoes](docs/images/555460282_10163378911348750_5147601682514173002_n.jpg)
+
+### Fashion - Sweater
+
+![Demo Sweater](docs/images/558764108_10163415838538750_7584497244626114108_n.jpg)
+
+---
 
 ## Features
 
-<p align="center">
-  <img src="docs/images/features.svg" alt="SnapStudio Features" width="100%"/>
-</p>
-
-### Image Generation Styles
+- **AI Image Generation** - 1 photo → 12 images in ~30 seconds
+- **4 Image Styles**:
 
 | Style | Description | Use Case |
 |-------|------------|----------|
@@ -40,15 +45,12 @@ Upload a product photo, choose your industry and styles, and SnapStudio's AI gen
 | **Social** | Media-optimized images | Instagram, Facebook, seasonal campaigns |
 | **Seeding** | UGC-style authentic photos | Reviews, flat lays, organic marketing |
 
-### Supported Industries
-
-- Fashion & Accessories
-- Beauty & Personal Care
-- Food & Beverage
-- Mother & Baby
-- And more...
-
-Each industry has **specialized AI prompts** optimized for that category's visual style.
+- **Multi-Industry Templates** - Fashion, Beauty, Food & Beverage, Mother & Baby (60+ AI prompts)
+- **Community** - Public image sharing, likes, comments, user following
+- **Points System** - Credit-based pricing with Starter, Pro, Business & Enterprise tiers
+- **VN Payments** - Bank transfer with QR code via SePay
+- **Affiliate Program** - Referral codes, commission tracking, automated payouts
+- **Admin Dashboard** - Real-time analytics, user management, content moderation
 
 ## Architecture
 
@@ -59,7 +61,7 @@ Each industry has **specialized AI prompts** optimized for that category's visua
 ### Tech Stack
 
 | Layer | Technology |
-|-------|-----------|
+|-------|------------|
 | Framework | [Next.js 15](https://nextjs.org/) (App Router) |
 | Language | TypeScript |
 | UI Components | [Shadcn/UI](https://ui.shadcn.com/) (Radix UI + Tailwind CSS) |
@@ -121,8 +123,6 @@ pnpm install
 
 ### 3. Set up environment variables
 
-Copy the example file and fill in your values:
-
 ```bash
 cp .env.example .env.local
 ```
@@ -137,13 +137,11 @@ SEPAY_WEBHOOK_API_KEY=your-sepay-webhook-key
 
 ### 4. Set up Supabase
 
-Apply the database migrations:
-
 ```bash
 npx supabase db push
 ```
 
-> **Note**: Migration files contain placeholder emails (`your-admin@example.com`). Update these with your actual admin email before running.
+> **Note**: Migration files contain placeholder emails (`your-admin@example.com`). Update with your actual admin email before running.
 
 ### 5. Run the development server
 
@@ -167,7 +165,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 Key tables with Row-Level Security (RLS):
 
 | Table | Purpose |
-|-------|---------|
+|-------|----------|
 | `profiles` | User accounts, subscription plans, points balance |
 | `projects` | AI generation projects per user |
 | `generated_images` | Output images with styles, prompts, watermarks |
@@ -181,7 +179,7 @@ Key tables with Row-Level Security (RLS):
 ## Edge Functions
 
 | Function | Purpose |
-|----------|---------|
+|----------|----------|
 | `generate-images` | Batch AI image generation (12 images) |
 | `generate-solo-image` | Single image generation |
 | `process-batch-generation` | Batch processing orchestrator |
@@ -199,17 +197,11 @@ Key tables with Row-Level Security (RLS):
 
 ## Deployment
 
-Optimized for [Vercel](https://vercel.com/):
-
-```bash
-pnpm build
-```
-
-Configure all environment variables in your Vercel project settings.
+Optimized for [Vercel](https://vercel.com/). Configure all environment variables in your Vercel project settings.
 
 ## License
 
-This project is licensed under the [Apache License 2.0](LICENSE).
+[Apache License 2.0](LICENSE)
 
 ---
 
