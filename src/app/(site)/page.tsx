@@ -1,109 +1,74 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Upload, Users, Zap, ArrowRight, TrendingUp, Award, Shield, LogIn, Star, CheckCircle, Sparkles, CreditCard } from "lucide-react";
-import { createSupabaseBrowserClient } from "@/integrations/supabase/client";
-import SampleOutputsGrid from "@/components/sample-outputs-grid";
 import PricingPlans from "@/components/pricing-plans";
 import { useRouter } from "next/navigation";
 
-const supabase = createSupabaseBrowserClient();
-
 const stats = [
-  { number: '50,000+', label: 'Ảnh đã tạo thành công', icon: TrendingUp, color: 'text-blue-600' },
-  { number: '2,500+', label: 'Doanh nghiệp tin dùng', icon: Users, color: 'text-green-600' },
-  { number: '4.9/5', label: 'Đánh giá từ khách hàng', icon: Award, color: 'text-yellow-600' },
-  { number: '99.9%', label: 'Thời gian hoạt động', icon: Shield, color: 'text-purple-600' }
+  { number: '50,000+', label: '\u1ea2nh \u0111\u00e3 t\u1ea1o th\u00e0nh c\u00f4ng', icon: TrendingUp, color: 'text-blue-600' },
+  { number: '2,500+', label: 'Doanh nghi\u1ec7p tin d\u00f9ng', icon: Users, color: 'text-green-600' },
+  { number: '4.9/5', label: '\u0110\u00e1nh gi\u00e1 t\u1eeb kh\u00e1ch h\u00e0ng', icon: Award, color: 'text-yellow-600' },
+  { number: '99.9%', label: 'Th\u1eddi gian ho\u1ea1t \u0111\u1ed9ng', icon: Shield, color: 'text-purple-600' }
 ];
 
 const features = [
   {
     icon: Zap,
-    title: "Bộ ảnh marketing hoàn chỉnh trong 30 giây",
-    description: "Từ 1 ảnh gốc tạo ra 12 ảnh đầy đủ cho mọi nền tảng: Website, Facebook, Instagram, TikTok, Shopee, Lazada",
+    title: "B\u1ed9 \u1ea3nh marketing ho\u00e0n ch\u1ec9nh trong 30 gi\u00e2y",
+    description: "T\u1eeb 1 \u1ea3nh g\u1ed1c t\u1ea1o ra 12 \u1ea3nh \u0111\u1ea7y \u0111\u1ee7 cho m\u1ecdi n\u1ec1n t\u1ea3ng: Website, Facebook, Instagram, TikTok, Shopee, Lazada",
     color: "bg-blue-100 text-blue-600"
   },
   {
     icon: Star,
-    title: "4 phong cách phủ sóng toàn bộ customer journey", 
-    description: "Ảnh trưng bày sản phẩm, người mẫu thực tế, content mạng xã hội, banner quảng cáo - đủ từ awareness đến conversion",
+    title: "4 phong c\u00e1ch ph\u1ee7 s\u00f3ng to\u00e0n b\u1ed9 customer journey", 
+    description: "\u1ea2nh tr\u01b0ng b\u00e0y s\u1ea3n ph\u1ea9m, ng\u01b0\u1eddi m\u1eabu th\u1ef1c t\u1ebf, content m\u1ea1ng x\u00e3 h\u1ed9i, banner qu\u1ea3ng c\u00e1o - \u0111\u1ee7 t\u1eeb awareness \u0111\u1ebfn conversion",
     color: "bg-purple-100 text-purple-600"
   },
   {
     icon: CheckCircle,
-    title: "Nhất quán thương hiệu trên mọi kênh",
-    description: "Tông màu, phong cách, chất lượng đồng nhất - xây dựng brand identity mạnh mẽ và chuyên nghiệp",
+    title: "Nh\u1ea5t qu\u00e1n th\u01b0\u01a1ng hi\u1ec7u tr\u00ean m\u1ecdi k\u00eanh",
+    description: "T\u00f4ng m\u00e0u, phong c\u00e1ch, ch\u1ea5t l\u01b0\u1ee3ng \u0111\u1ed3ng nh\u1ea5t - x\u00e2y d\u1ef1ng brand identity m\u1ea1nh m\u1ebd v\u00e0 chuy\u00ean nghi\u1ec7p",
     color: "bg-green-100 text-green-600"
   }
 ];
 
 const testimonials = [
   {
-    name: "Chị Minh Anh",
-    role: "Marketing Manager - Thời trang MINA",
-    content: "SnapStudio giúp team mình có đủ ảnh cho cả năm! Website, Facebook Ads, Instagram Stories, TikTok - tất cả đều có ảnh đẹp và nhất quán thương hiệu.",
+    name: "Ch\u1ecb Minh Anh",
+    role: "Marketing Manager - Th\u1eddi trang MINA",
+    content: "SnapStudio gi\u00fap team m\u00ecnh c\u00f3 \u0111\u1ee7 \u1ea3nh cho c\u1ea3 n\u0103m! Website, Facebook Ads, Instagram Stories, TikTok - t\u1ea5t c\u1ea3 \u0111\u1ec1u c\u00f3 \u1ea3nh \u0111\u1eb9p v\u00e0 nh\u1ea5t qu\u00e1n th\u01b0\u01a1ng hi\u1ec7u.",
     avatar: "https://ui-avatars.com/api/?name=Minh+Anh&background=random&color=fff",
     industry: 'fashion'
   },
   {
-    name: "Anh Văn Hùng", 
-    role: "Founder - Chuỗi Quán Hùng Ký",
-    content: "Từ menu in, poster quán, đến Facebook, Grab Food - tất cả đều dùng ảnh từ SnapStudio. Khách thấy ảnh đẹp, order nhiều hơn hẳn!",
-    avatar: "https://ui-avatars.com/api/?name=Văn+Hùng&background=random&color=fff",
+    name: "Anh V\u0103n H\u00f9ng", 
+    role: "Founder - Chu\u1ed7i Qu\u00e1n H\u00f9ng K\u00fd",
+    content: "T\u1eeb menu in, poster qu\u00e1n, \u0111\u1ebfn Facebook, Grab Food - t\u1ea5t c\u1ea3 \u0111\u1ec1u d\u00f9ng \u1ea3nh t\u1eeb SnapStudio. Kh\u00e1ch th\u1ea5y \u1ea3nh \u0111\u1eb9p, order nhi\u1ec1u h\u01a1n h\u1eb3n!",
+    avatar: "https://ui-avatars.com/api/?name=V%C4%83n+H%C3%B9ng&background=random&color=fff",
     industry: 'f_b'
   },
   {
-    name: "Chị Thị Mai",
+    name: "Ch\u1ecb Th\u1ecb Mai",
     role: "CEO - Mai Beauty House", 
-    content: "1 lần chụp có ngay content cho cả tháng: ảnh website, banner Shopee, story Instagram, video TikTok. Marketing team không bao giờ thiếu ảnh!",
-    avatar: "https://ui-avatars.com/api/?name=Thị+Mai&background=random&color=fff",
+    content: "1 l\u1ea7n ch\u1ee5p c\u00f3 ngay content cho c\u1ea3 th\u00e1ng: \u1ea3nh website, banner Shopee, story Instagram, video TikTok. Marketing team kh\u00f4ng bao gi\u1edd thi\u1ebfu \u1ea3nh!",
+    avatar: "https://ui-avatars.com/api/?name=Th%E1%BB%8B+Mai&background=random&color=fff",
     industry: 'beauty'
   }
 ];
 
 const comparisonData = [
-  { aspect: 'Số nền tảng phủ sóng', traditional: '1-2 nền tảng', snapstudio: 'Tất cả nền tảng', improvement: 'Phủ sóng toàn diện' },
-  { aspect: 'Thời gian có ảnh đủ dùng', traditional: '2-4 tuần', snapstudio: '30 giây', improvement: 'Nhanh hơn 99%' },
-  { aspect: 'Chi phí cho đa nền tảng', traditional: '10-50 triệu', snapstudio: '99k-5M', improvement: 'Tiết kiệm 90%' },
-  { aspect: 'Tính nhất quán thương hiệu', traditional: 'Khó đồng bộ', snapstudio: 'Hoàn toàn nhất quán', improvement: 'Brand identity mạnh' }
+  { aspect: 'S\u1ed1 n\u1ec1n t\u1ea3ng ph\u1ee7 s\u00f3ng', traditional: '1-2 n\u1ec1n t\u1ea3ng', snapstudio: 'T\u1ea5t c\u1ea3 n\u1ec1n t\u1ea3ng', improvement: 'Ph\u1ee7 s\u00f3ng to\u00e0n di\u1ec7n' },
+  { aspect: 'Th\u1eddi gian c\u00f3 \u1ea3nh \u0111\u1ee7 d\u00f9ng', traditional: '2-4 tu\u1ea7n', snapstudio: '30 gi\u00e2y', improvement: 'Nhanh h\u01a1n 99%' },
+  { aspect: 'Chi ph\u00ed cho \u0111a n\u1ec1n t\u1ea3ng', traditional: '10-50 tri\u1ec7u', snapstudio: '99k-5M', improvement: 'Ti\u1ebft ki\u1ec7m 90%' },
+  { aspect: 'T\u00ednh nh\u1ea5t qu\u00e1n th\u01b0\u01a1ng hi\u1ec7u', traditional: 'Kh\u00f3 \u0111\u1ed3ng b\u1ed9', snapstudio: 'Ho\u00e0n to\u00e0n nh\u1ea5t qu\u00e1n', improvement: 'Brand identity m\u1ea1nh' }
 ];
 
 export default function Home() {
   const router = useRouter();
-  const [sampleImages, setSampleImages] = useState<any[] | null>(null);
-  const [samplesLoaded, setSamplesLoaded] = useState(false);
-
-  useEffect(() => {
-    if (samplesLoaded) return;
-
-    const loadSampleImages = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('generated_images')
-          .select('id, image_type, title, description, image_url')
-          .eq('is_featured', true)
-          .limit(12);
-
-        if (error) {
-          console.error('Error loading sample images:', error);
-          setSampleImages(null);
-        } else {
-          setSampleImages(data);
-        }
-      } catch (error) {
-        console.error('Error in loadSampleImages:', error);
-        setSampleImages(null);
-      } finally {
-        setSamplesLoaded(true);
-      }
-    };
-
-    loadSampleImages();
-  }, [samplesLoaded]);
 
   return (
     <>
@@ -117,7 +82,7 @@ export default function Home() {
           <div className="text-center max-w-5xl mx-auto animate-fade-in-up">
             <Badge className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 border-0 px-6 py-2 mb-8 animate-scale-in">
               <Sparkles className="w-4 h-4" />
-              Giải pháp hình ảnh marketing đa nền tảng số 1 Việt Nam
+              Gi\u1ea3i ph\u00e1p h\u00ecnh \u1ea3nh marketing \u0111a n\u1ec1n t\u1ea3ng s\u1ed1 1 Vi\u1ec7t Nam
             </Badge>
             
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 text-balance">
@@ -126,9 +91,9 @@ export default function Home() {
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed text-balance max-w-4xl mx-auto">
-              <span className="font-bold text-purple-600">1 ảnh sản phẩm</span> → 
-              <span className="font-bold text-blue-600"> 12 ảnh marketing hoàn chỉnh</span> cho
-              <span className="font-bold text-green-600"> mọi nền tảng</span>: Website, Social Media, E-commerce, Quảng cáo
+              <span className="font-bold text-purple-600">1 \u1ea3nh s\u1ea3n ph\u1ea9m</span> \u2192 
+              <span className="font-bold text-blue-600"> 12 \u1ea3nh marketing ho\u00e0n ch\u1ec9nh</span> cho
+              <span className="font-bold text-green-600"> m\u1ecdi n\u1ec1n t\u1ea3ng</span>: Website, Social Media, E-commerce, Qu\u1ea3ng c\u00e1o
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -139,7 +104,7 @@ export default function Home() {
                 onClick={() => router.push('/login')}
               >
                 <LogIn className="w-5 h-5 mr-2" />
-                Tạo bộ ảnh marketing ngay
+                T\u1ea1o b\u1ed9 \u1ea3nh marketing ngay
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
               <Button 
@@ -152,7 +117,7 @@ export default function Home() {
                 }}
               >
                 <CreditCard className="w-5 h-5 mr-2" />
-                Xem gói dịch vụ
+                Xem g\u00f3i d\u1ecbch v\u1ee5
               </Button>
             </div>
 
@@ -179,14 +144,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sample Outputs */}
+      {/* Demo Showcase */}
       <section className="section-padding bg-gradient-to-br from-gray-50 to-blue-50/30">
         <div className="container-custom">
-          <SampleOutputsGrid
-            title="Bộ ảnh marketing hoàn chỉnh"
-            subtitle="Website • Social Media • E-commerce • Advertising — đầy đủ cho mọi nền tảng marketing"
-            preloadedImages={sampleImages}
-          />
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              B\u1ed9 \u1ea3nh marketing ho\u00e0n ch\u1ec9nh
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              1 \u1ea3nh g\u1ed1c \u2192 12 \u1ea3nh marketing chuy\u00ean nghi\u1ec7p v\u1edbi 4 phong c\u00e1ch: <strong>Seeding</strong> \u2022 <strong>Social</strong> \u2022 <strong>Model</strong> \u2022 <strong>Display</strong>
+            </p>
+          </div>
+          <div className="space-y-8">
+            {[
+              { src: "/demo-fashion.jpg", alt: "Demo th\u1eddi trang - \u00c1o s\u1ecdc", label: "Th\u1eddi trang" },
+              { src: "/demo-shoes.jpg", alt: "Demo gi\u00e0y Nike", label: "Gi\u00e0y d\u00e9p" },
+              { src: "/demo-sweater.jpg", alt: "Demo \u00e1o len", label: "Th\u1eddi trang n\u1eef" },
+            ].map((demo, i) => (
+              <div key={i} className="rounded-2xl overflow-hidden shadow-lg border border-gray-200">
+                <img
+                  src={demo.src}
+                  alt={demo.alt}
+                  className="w-full h-auto"
+                  loading={i === 0 ? "eager" : "lazy"}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -195,10 +179,10 @@ export default function Home() {
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4 text-balance">
-              Tại sao doanh nghiệp chọn SnapStudio?
+              T\u1ea1i sao doanh nghi\u1ec7p ch\u1ecdn SnapStudio?
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Giải pháp hình ảnh marketing toàn diện, tiết kiệm thời gian và chi phí
+              Gi\u1ea3i ph\u00e1p h\u00ecnh \u1ea3nh marketing to\u00e0n di\u1ec7n, ti\u1ebft ki\u1ec7m th\u1eddi gian v\u00e0 chi ph\u00ed
             </p>
           </div>
 
@@ -226,19 +210,19 @@ export default function Home() {
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4 text-balance">
-              So sánh với cách làm marketing truyền thống
+              So s\u00e1nh v\u1edbi c\u00e1ch l\u00e0m marketing truy\u1ec1n th\u1ed1ng
             </h2>
-            <p className="text-xl text-gray-600">Phủ sóng toàn diện, nhất quán thương hiệu, tiết kiệm chi phí</p>
+            <p className="text-xl text-gray-600">Ph\u1ee7 s\u00f3ng to\u00e0n di\u1ec7n, nh\u1ea5t qu\u00e1n th\u01b0\u01a1ng hi\u1ec7u, ti\u1ebft ki\u1ec7m chi ph\u00ed</p>
           </div>
 
           <div className="max-w-5xl mx-auto">
             <Card className="overflow-hidden shadow-2xl border-0">
               <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
                 <div className="grid grid-cols-4 p-6">
-                  <div className="font-semibold text-lg">Tiêu chí</div>
-                  <div className="font-semibold text-lg">Cách truyền thống</div>
+                  <div className="font-semibold text-lg">Ti\u00eau ch\u00ed</div>
+                  <div className="font-semibold text-lg">C\u00e1ch truy\u1ec1n th\u1ed1ng</div>
                   <div className="font-semibold text-lg">SnapStudio</div>
-                  <div className="font-semibold text-lg">Lợi ích</div>
+                  <div className="font-semibold text-lg">L\u1ee3i \u00edch</div>
                 </div>
               </div>
               {comparisonData.map((row, index) => (
@@ -259,9 +243,9 @@ export default function Home() {
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4 text-balance">
-              Doanh nghiệp từ mọi ngành tin dùng SnapStudio
+              Doanh nghi\u1ec7p t\u1eeb m\u1ecdi ng\u00e0nh tin d\u00f9ng SnapStudio
             </h2>
-            <p className="text-xl text-gray-600">Hơn 2,500 doanh nghiệp đã có bộ ảnh marketing hoàn chỉnh</p>
+            <p className="text-xl text-gray-600">H\u01a1n 2,500 doanh nghi\u1ec7p \u0111\u00e3 c\u00f3 b\u1ed9 \u1ea3nh marketing ho\u00e0n ch\u1ec9nh</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -305,10 +289,10 @@ export default function Home() {
             <Sparkles className="w-16 h-16 text-white/80 mx-auto mb-6" />
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 text-balance">
-            Sẵn sàng có bộ ảnh marketing hoàn chỉnh?
+            S\u1eb5n s\u00e0ng c\u00f3 b\u1ed9 \u1ea3nh marketing ho\u00e0n ch\u1ec9nh?
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Tạo ngay bộ ảnh đầy đủ cho mọi nền tảng marketing của doanh nghiệp bạn.
+            T\u1ea1o ngay b\u1ed9 \u1ea3nh \u0111\u1ea7y \u0111\u1ee7 cho m\u1ecdi n\u1ec1n t\u1ea3ng marketing c\u1ee7a doanh nghi\u1ec7p b\u1ea1n.
           </p>
           <Button 
             size="lg" 
@@ -317,7 +301,7 @@ export default function Home() {
             onClick={() => router.push('/login')}
           >
             <LogIn className="w-5 h-5 mr-2" />
-            Tạo bộ ảnh marketing ngay
+            T\u1ea1o b\u1ed9 \u1ea3nh marketing ngay
             <ArrowRight className="w-5 h-5 ml-2" />
           </Button>
         </div>
