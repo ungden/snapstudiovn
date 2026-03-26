@@ -2,32 +2,32 @@ import { PageLayout } from '@/components/layout/page-layout';
 import { generatePageMetadata } from '@/lib/metadata';
 
 export const metadata = generatePageMetadata({
-  title: "Chính sách Bảo mật",
-  description: "Chính sách bảo mật thông tin cá nhân của SnapStudio. Chúng tôi tôn trọng quyền riêng tư của bạn.",
+  title: "Privacy Policy",
+  description: "SnapStudio's personal information privacy policy. We respect your privacy.",
   path: "/privacy",
-  keywords: ["chính sách bảo mật", "privacy policy", "data protection", "GDPR"],
+  keywords: ["privacy policy", "data protection", "GDPR", "personal data"],
   noIndex: true
 });
 
 export default function PrivacyPage() {
   return (
     <PageLayout
-      title="Chính sách Bảo mật"
-      subtitle="Chúng tôi tôn trọng quyền riêng tư của bạn."
+      title="Privacy Policy"
+      subtitle="We respect your privacy."
     >
-      <h2 className="text-2xl font-semibold mt-8 mb-4">1. Thu thập thông tin</h2>
+      <h2 className="text-2xl font-semibold mt-8 mb-4">1. Information Collection</h2>
       <p>
-        Chúng tôi thu thập thông tin bạn cung cấp trực tiếp cho chúng tôi, chẳng hạn như khi bạn tạo tài khoản, bao gồm tên, địa chỉ email và thông tin thanh toán.
-      </p>
-      
-      <h2 className="text-2xl font-semibold mt-8 mb-4">2. Sử dụng thông tin</h2>
-      <p>
-        Chúng tôi sử dụng thông tin thu thập được để cung cấp, duy trì và cải thiện dịch vụ của mình, cũng như để liên lạc với bạn về các cập nhật và ưu đãi.
+        We collect information you provide directly to us, such as when you create an account, including your name, email address, and payment information.
       </p>
 
-      <h2 className="text-2xl font-semibold mt-8 mb-4">3. Chia sẻ thông tin</h2>
+      <h2 className="text-2xl font-semibold mt-8 mb-4">2. Use of Information</h2>
       <p>
-        Chúng tôi không chia sẻ thông tin cá nhân của bạn với các công ty, tổ chức hoặc cá nhân bên ngoài trừ khi có sự đồng ý của bạn hoặc theo yêu cầu của pháp luật.
+        We use the information we collect to provide, maintain, and improve our services, as well as to communicate with you about updates and offers.
+      </p>
+
+      <h2 className="text-2xl font-semibold mt-8 mb-4">3. Information Sharing</h2>
+      <p>
+        We do not share your personal information with outside companies, organizations, or individuals unless we have your consent or are required to do so by law.
       </p>
     </PageLayout>
   );

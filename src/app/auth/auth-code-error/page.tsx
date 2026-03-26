@@ -10,8 +10,8 @@ export default function AuthCodeError() {
       height: '100vh',
       fontFamily: 'sans-serif'
     }}>
-      <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Lỗi Xác thực</h1>
-      <p style={{ marginBottom: '2rem' }}>Đã có lỗi xảy ra trong quá trình xác thực. Vui lòng thử lại.</p>
+      <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Authentication Error</h1>
+      <p style={{ marginBottom: '2rem' }}>An error occurred during authentication. Please try again.</p>
       <Link href="/login" style={{
         padding: '0.75rem 1.5rem',
         backgroundColor: '#0070f3',
@@ -19,7 +19,7 @@ export default function AuthCodeError() {
         textDecoration: 'none',
         borderRadius: '0.5rem'
       }}>
-        Quay lại trang Đăng nhập
+        Back to Sign In
       </Link>
     </div>
   )

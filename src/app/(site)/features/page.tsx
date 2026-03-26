@@ -3,38 +3,38 @@ import { Zap, Star, CheckCircle } from 'lucide-react';
 import { generatePageMetadata } from '@/lib/metadata';
 
 export const metadata = generatePageMetadata({
-  title: "Tính năng AI tạo ảnh sản phẩm",
-  description: "Khám phá sức mạnh của SnapStudio: AI tạo ảnh siêu nhanh, 4 phong cách marketing hoàn chỉnh, chất lượng studio chuyên nghiệp.",
+  title: "AI Product Image Generation Features",
+  description: "Discover the power of SnapStudio: ultra-fast AI image generation, 4 complete marketing styles, professional studio quality.",
   path: "/features",
-  keywords: ["tính năng AI", "tạo ảnh nhanh", "marketing automation", "studio quality"]
+  keywords: ["AI features", "fast image generation", "marketing automation", "studio quality"]
 });
 
 export default function FeaturesPage() {
   const features = [
     {
       icon: Zap,
-      title: "AI Tạo Ảnh Siêu Nhanh",
-      description: "Tạo 12 ảnh sản phẩm chuyên nghiệp chỉ trong 30 giây với công nghệ Gemini 2.5 Flash. Không cần studio, không cần photographer.",
+      title: "Ultra-Fast AI Image Generation",
+      description: "Generate 12 professional product images in just 30 seconds with Gemini 2.5 Flash technology. No studio needed, no photographer required.",
       color: "bg-blue-100 text-blue-600"
     },
     {
       icon: Star,
-      title: "4 Phong Cách Marketing Hoàn Chỉnh", 
-      description: "Display (nền trắng studio), Model (người mẫu), Social (bài post), Seeding (UGC) - đủ cho mọi kênh bán hàng và quảng cáo.",
+      title: "4 Complete Marketing Styles",
+      description: "Display (white studio background), Model (with models), Social (social posts), Seeding (UGC) - covering all sales channels and advertising needs.",
       color: "bg-purple-100 text-purple-600"
     },
     {
       icon: CheckCircle,
-      title: "Chất Lượng Studio Chuyên Nghiệp",
-      description: "Ảnh đầu ra có độ phân giải cao, ánh sáng chuẩn studio, bố cục hoàn hảo. Sẵn sàng sử dụng cho website, social media, sàn TMĐT.",
+      title: "Professional Studio Quality",
+      description: "Output images are high-resolution with studio-grade lighting and perfect composition. Ready for websites, social media, and e-commerce platforms.",
       color: "bg-green-100 text-green-600"
     }
   ];
 
   return (
     <PageLayout
-      title="Dịch vụ tạo ảnh AI"
-      subtitle="Khám phá sức mạnh của SnapStudio"
+      title="AI Image Generation Service"
+      subtitle="Discover the power of SnapStudio"
     >
       <div className="space-y-8">
         {features.map((feature, index) => {

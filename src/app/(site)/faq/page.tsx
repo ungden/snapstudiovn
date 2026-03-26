@@ -8,36 +8,36 @@ import {
 import { generatePageMetadata } from '@/lib/metadata';
 
 export const metadata = generatePageMetadata({
-  title: "Câu hỏi Thường gặp (FAQ)",
-  description: "Tìm câu trả lời cho các thắc mắc về SnapStudio: cách hoạt động, chi phí, chất lượng ảnh, quyền sử dụng thương mại.",
+  title: "Frequently Asked Questions (FAQ)",
+  description: "Find answers to common questions about SnapStudio: how it works, pricing, image quality, and commercial usage rights.",
   path: "/faq",
-  keywords: ["FAQ", "câu hỏi", "hướng dẫn", "support", "help"]
+  keywords: ["FAQ", "questions", "guide", "support", "help"]
 });
 
 export default function FaqPage() {
   const faqs = [
     {
-      question: "SnapStudio hoạt động như thế nào?",
-      answer: "Bạn chỉ cần tải lên một ảnh sản phẩm gốc. AI của chúng tôi sẽ phân tích và tự động tạo ra một bộ 12 ảnh marketing chuyên nghiệp theo 4 phong cách khác nhau: Display, Model, Social, và Seeding."
+      question: "How does SnapStudio work?",
+      answer: "Simply upload one original product photo. Our AI will analyze it and automatically generate a set of 12 professional marketing images in 4 different styles: Display, Model, Social, and Seeding."
     },
     {
-      question: "Chi phí cho mỗi lần tạo ảnh là bao nhiêu?",
-      answer: "Mỗi lần tạo một bộ 12 ảnh (Batch Mode) sẽ tốn 120 điểm. Nếu bạn tạo ảnh tùy chỉnh (Solo Mode), chi phí là 30 điểm cho mỗi ảnh. Chúng tôi khuyến khích sử dụng Batch Mode để tiết kiệm chi phí tối đa."
+      question: "How much does each image generation cost?",
+      answer: "Each batch of 12 images (Batch Mode) costs 120 credits. If you generate custom images (Solo Mode), the cost is 30 credits per image. We recommend using Batch Mode to maximize cost savings."
     },
     {
-      question: "Tôi có thể sử dụng ảnh đã tạo cho mục đích thương mại không?",
-      answer: "Có, tất cả các ảnh bạn tạo ra đều thuộc quyền sở hữu của bạn và bạn có toàn quyền sử dụng chúng cho các mục đích thương mại như quảng cáo, đăng bài trên mạng xã hội, website, v.v."
+      question: "Can I use the generated images for commercial purposes?",
+      answer: "Yes, all images you generate are your property, and you have full rights to use them for commercial purposes such as advertising, social media posts, websites, etc."
     },
     {
-      question: "Chất lượng ảnh đầu ra như thế nào?",
-      answer: "Ảnh được tạo ra có độ phân giải cao, phù hợp cho cả việc in ấn và sử dụng trên các nền tảng kỹ thuật số. AI được huấn luyện để tạo ra hình ảnh với ánh sáng, bố cục và chất lượng chuyên nghiệp như trong studio."
+      question: "What is the output image quality like?",
+      answer: "Generated images are high-resolution, suitable for both printing and digital platforms. The AI is trained to produce images with professional studio-quality lighting, composition, and finish."
     }
   ];
 
   return (
     <PageLayout
-      title="Câu hỏi Thường gặp (FAQ)"
-      subtitle="Tìm câu trả lời cho các thắc mắc phổ biến nhất."
+      title="Frequently Asked Questions (FAQ)"
+      subtitle="Find answers to the most common questions."
     >
       <Accordion type="single" collapsible className="w-full">
         {faqs.map((faq, index) => (
